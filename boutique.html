@@ -26,29 +26,90 @@
    </header>
    <main class="container-fluid">
       <section class="row gy-3">
-         <div class="col-12 col-md-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi reiciendis nihil mollitia eum? Vel aut minima aliquid consequuntur assumenda qui, eveniet necessitatibus blanditiis fugiat. Repellendus cum magnam non sequi amet.
+         <div class="col-12 col-sm-3">
+            <fieldset>
+               <legend>Catégories</legend>
+               <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkBoxTous" checked>
+                  <label class="form-check-label" for="checkBoxTous">Tous</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkBoxChocoBlanc">
+                  <label class="form-check-label" for="checkBoxChocoBlanc">Chocolat blanc</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkBoxChocoLait">
+                  <label class="form-check-label" for="checkBoxChocoLait">Chocolat au lait</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkBoxChocoNoir">
+                  <label class="form-check-label" for="checkBoxChocoNoir">Chocolat noir</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkBoxNoisette">
+                  <label class="form-check-label" for="checkBoxNoisette">Noix/Noisette</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkBoxFruit">
+                  <label class="form-check-label" for="checkBoxFruit">Fruit</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkBoxCaramel">
+                  <label class="form-check-label" for="checkBoxCaramel">Caramel</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkBoxLiqueur">
+                  <label class="form-check-label" for="checkBoxLiqueur">Liqueur</label>
+                </div>
+                <legend>Prix</legend>
+                <div class="d-flex d-inline-flex justify-content-between">
+                     <p><small>Prix min</small></p>
+                        <select class="w-50 form-select form-select-sm" aria-label="Prix min">
+                        <option value="1">1 €</option>
+                        <option value="2">2 €</option>
+                        <option value="3">3 €</option>
+                        <option value="3">10 €</option>
+                      </select>
+                </div>
+                <div class="d-flex d-inline-flex justify-content-between">
+                  <label class="w-50" for="prixMax">Prix max</label>
+                  <select class="w-50 form-select form-select-sm" aria-label="Prix max">
+                     <option value="1">100 €</option>
+                     <option value="2">50 €</option>
+                     <option value="3">25 €</option>
+                   </select>
+                </div>
+            </fieldset>
          </div>
-         <div class="col-12 col-md-9">
-            <div class="row">
-               <article class="col-12 col-md-4">
+         <div class="col-12 col-sm-9">
+            <div class="row  text-center">
+               <article class="col-12 col-sm-6 col-md-4">
                   <img class="w-100 p-2" src="images/produit1.jpg" alt="bonbon cerise">
                   <h5>Nom produit</h5>
                   <p>prix €</p>
                   <p>Note</p>
                   <button>ajouter au panier</button>
                </article>
-               <article class="col-12 col-md-4">
+               <article class="col-12 col-sm-6 col-md-4">
                   <img class="w-100 p-2" src="images/produit2.jpg" alt="bonbon chocolat caramel">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ullam voluptatem doloribus officiis, soluta vitae fugit obcaecati dolores eaque beatae explicabo ducimus nemo velit molestiae? Debitis nemo ipsum voluptatibus ipsam!
+                  <h5>Nom produit</h5>
+                  <p>prix €</p>
+                  <p>Note</p>
+                  <button>ajouter au panier</button>
                </article>
-               <article class="col-12 col-md-4">
+               <article class="col-12 col-sm-6 col-md-4">
                   <img class="w-100 p-2" src="images/produit3.jpg" alt="bonbon alcool">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ullam voluptatem doloribus officiis, soluta vitae fugit obcaecati dolores eaque beatae explicabo ducimus nemo velit molestiae? Debitis nemo ipsum voluptatibus ipsam!
+                  <h5>Nom produit</h5>
+                  <p>prix €</p>
+                  <p>Note</p>
+                  <button>ajouter au panier</button>
                </article>
-               <article class="col-12 col-md-4">
+               <article class="col-12 col-sm-6 col-md-4">
                   <img class="w-100 p-2" src="images/produit4.jpg" alt="bonbon coeur">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ullam voluptatem doloribus officiis, soluta vitae fugit obcaecati dolores eaque beatae explicabo ducimus nemo velit molestiae? Debitis nemo ipsum voluptatibus ipsam!
+                  <h5>Nom produit</h5>
+                  <p>prix €</p>
+                  <p>Note</p>
+                  <button>ajouter au panier</button>
                </article>
 
             </div>
