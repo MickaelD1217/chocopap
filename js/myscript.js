@@ -1,10 +1,2 @@
-$('#multi6').mdbRange({
-   width: '25%',
-   single: {
-     active: true,
-     multi: {
-       active: true,
-       rangeLength: 2
-     },
-   }
- });
+// alert("Bonjour de javascript!");
+console.log(window.document);
