@@ -266,8 +266,7 @@ function delArticles(){
 
 function affArticles(){
   delArticles(); //efface tous
-  for (ind in myProducts){
-    let unProduits = myProducts[ind];
+  for (unProduits of myProducts){
     var bAffiche = true;
   
     if (bAffiche){
