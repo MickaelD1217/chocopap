@@ -1,12 +1,4 @@
 
-let checkTous = document.getElementById('checkBoxTous');
-
-if (checkTous.checked){
-   console.log(`Tous coche`);
-}else{
-   console.log(`Tous decoche`);
-}
-
 let lstArticles = document.getElementById('myArticle');
 let lstProducts = `[{
        "id": "1" ,
@@ -192,7 +184,76 @@ let lstProducts = `[{
  let myProducts = JSON.parse(lstProducts);
 
 // console.log(myProducts);
+let myCaseTous = document.getElementById('checkBoxTous');
+let caseAcocher = document.querySelectorAll('#checkbox input');
+// for (myCase of caseAcocher){
+//   myCase.onclick = function(){
+//     alert('clic');
+//   }
+// }
 
+for(let i=0; i < caseAcocher.length; i++){
+  let myCase = caseAcocher[i];
+  myCase.addEventListener('click', clickSurCaseAcocher, false);
+}
+
+let selecteur = document.querySelectorAll('#checkbox select');
+for(let i=0; i < selecteur.length; i++){
+  let myCase = selecteur[i];
+  myCase.addEventListener('change', changeSurSelecteur, false);
+}
+
+function changeSurSelecteur(myEvent){
+  let cible = myEvent.target.id;
+  let newValue = Number(myEvent.target.value);
+  console.log(cible+" "+myEvent.target.value);
+  switch(cible){
+    case "prixMin":
+      let max= document.getElementById("prixMax");
+      let prixMax = Number(max.value);
+      if (newValue > prixMax){
+        console.error("prix min > prix max");
+      }
+      break;
+    case "prixMax":
+      let min= document.getElementById("prixMin");
+      let prixMin = Number(min.value);
+      if (newValue < prixMin){
+        console.error("prix max < prix min");
+      }
+      break;
+    case "noteMin":
+      break;
+    case "noteMax":
+      break;
+            
+}
+  
+
+  //console.log(myEvent.target.id+" "+myEvent.target.value);
+}
+
+function clickSurCaseAcocher(myEvent){
+  let myCase = document.getElementById(myEvent.target.id);
+  
+  if (myEvent.target.id=="checkBoxTous" && myCase.checked){
+    for(let i=1; i < caseAcocher.length; i++){
+      let myCase = caseAcocher[i];
+      myCase.checked = false;
+    }
+  }else if (myCase.checked){
+    myCaseTous.checked=false;
+  }
+  delArticles();
+  affArticles();
+
+  // if (myCase.checked){
+  //    console.log(myEvent.target.id+" true");
+  //  }else{
+  //    console.log(myEvent.target.id+" false");
+  //  }
+  
+}
 
 //console.log(lstArticles);
 //console.log(`Ma page contient ${lstArticles.children.length} article(s)`);
@@ -265,11 +326,30 @@ function delArticles(){
 }
 
 function affArticles(){
-  delArticles(); //efface tous
   for (unProduits of myProducts){
-    var bAffiche = true;
-  
-    if (bAffiche){
+    let bAffiche = false;
+    let bPrix = true;
+    let bNote = true;
+    if (myCaseTous.checked){
+      bAffiche = true;
+    }else{
+      for(let i=1; i < caseAcocher.length; i++){
+        let myCase = caseAcocher[i];
+        if (myCase.checked){
+          if (myCase.id=='checkBoxChocoBlanc' && unProduits.category.blanc){bAffiche = true;}
+          else if (myCase.id=='checkBoxChocoLait' && unProduits.category.lait){bAffiche = true;}
+          else if (myCase.id=='checkBoxChocoNoir' && unProduits.category.noir){bAffiche = true;}
+          else if (myCase.id=='checkBoxNoisette' && unProduits.category.noix){bAffiche = true;}
+          else if (myCase.id=='checkBoxFruit' && unProduits.category.fruit){bAffiche = true;}
+          else if (myCase.id=='checkBoxCaramel' && unProduits.category.caramel){bAffiche = true;}
+          else if (myCase.id=='checkBoxLiqueur' && unProduits.category.liqueur){bAffiche = true;}
+        }
+      }
+    }
+ 
+    
+
+    if (bAffiche && bPrix && bNote){
       newArticles(unProduits.image,unProduits.title,unProduits.price,unProduits.note);  
     }
        //console.log(myProducts[unProduits].title);

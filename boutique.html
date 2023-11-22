@@ -32,7 +32,7 @@
       <h1  class="text-center">BOUTIQUE</h1>
       <section class="row gy-3">
          <div class="col-12 col-sm-4 col-md-3">
-            <fieldset class="position-relative border border-primary ps-1 pb-1 bg-secondary">
+            <fieldset class="position-relative border border-primary ps-1 pb-1 bg-secondary" id="checkbox">
                <!-- <p class="small position-absolute top-0 start-10 translate-middle bg-secondary">FILTRE</p> -->
                <legend class="pt-3 h5"><u>Catégories</u></legend>
                <div class="form-check">
@@ -70,7 +70,7 @@
                 <legend class="pt-2 h5"><u>Prix</u></legend>
                 <div>
                   <label class="position-relative pb-1 w-50" for="prixMin">Prix min</label> 
-                  <select aria-label="Prix min">
+                  <select aria-label="Prix min" id="prixMin">
                      <option value="1" selected>1 €</option>
                      <option value="5">5 €</option>
                      <option value="10">10 €</option>
@@ -81,7 +81,7 @@
                 </div>
                 <div>
                   <label class="position-relative w-50" for="prixMax">Prix max</label> 
-                  <select aria-label="Prix max">
+                  <select aria-label="Prix max" id="prixMax">
                      <option value="1">1 €</option>
                      <option value="5">5 €</option>
                      <option value="10">10 €</option>
@@ -93,7 +93,7 @@
                 <legend class="pt-2 h5"><u>Notes</u></legend>
                 <div>
                   <label class="position-relative pb-1 w-50" for="noteMin">Note min</label> 
-                  <select aria-label="note min">
+                  <select aria-label="note min" id="noteMin">
                      <option value="1" selected>1</option>
                      <option value="2">2</option>
                      <option value="3">3</option>
@@ -103,7 +103,7 @@
                 </div>
                 <div>
                   <label class="position-relative pb-1 w-50" for="noteMax">Note max</label> 
-                  <select aria-label="note max">
+                  <select aria-label="note max" id="noteMax">
                      <option value="1">1</option>
                      <option value="2">2</option>
                      <option value="3">3</option>
