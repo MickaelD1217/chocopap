@@ -206,19 +206,20 @@ for(let i=0; i < selecteur.length; i++){
 function changeSurSelecteur(myEvent){
   let cible = myEvent.target.id;
   let newValue = Number(myEvent.target.value);
-  console.log(cible+" "+myEvent.target.value);
+  //console.log(cible+" "+myEvent.target.value);
+  let max= document.getElementById("prixMax");
+  let min= document.getElementById("prixMin");
+
   switch(cible){
     case "prixMin":
-      let max= document.getElementById("prixMax");
-      let prixMax = Number(max.value);
-      if (newValue > prixMax){
+      if (newValue > Number(max.value)){
+        max.value=myEvent.target.value;
         console.error("prix min > prix max");
       }
       break;
     case "prixMax":
-      let min= document.getElementById("prixMin");
-      let prixMin = Number(min.value);
-      if (newValue < prixMin){
+      if (newValue < Number(min.value)){
+        min.value=myEvent.target.value;
         console.error("prix max < prix min");
       }
       break;
@@ -227,7 +228,9 @@ function changeSurSelecteur(myEvent){
     case "noteMax":
       break;
             
-}
+  }
+  delArticles();
+  affArticles();
   
 
   //console.log(myEvent.target.id+" "+myEvent.target.value);
@@ -279,7 +282,7 @@ function newArticles(fileImage,libelle,prix,etoile=2){
   elemBtn.type='button';
   
   let elemProduit = document.createElement('article');
-  elemProduit.className = 'col-12 col-sm-6 col-md-4 border border-primary pb-1';
+  elemProduit.className = 'col-12 col-sm-6 col-md-4 pb-1';
   elemProduit.appendChild(elemImg);
   elemProduit.appendChild(elemH5);
   elemProduit.appendChild(elemPrix);
@@ -326,10 +329,11 @@ function delArticles(){
 }
 
 function affArticles(){
+  var compteur=0;
   for (unProduits of myProducts){
     let bAffiche = false;
-    let bPrix = true;
-    let bNote = true;
+    let bPrix = false;
+    let bNote = false;
     if (myCaseTous.checked){
       bAffiche = true;
     }else{
@@ -346,15 +350,30 @@ function affArticles(){
         }
       }
     }
- 
-    
+    let price=Number(unProduits.price)
+    let max= Number(document.getElementById("prixMax").value);
+    let min= Number(document.getElementById("prixMin").value);
+    if (price>=min && price<=max) {bPrix=true;}
+
+    let quote=unProduits.note
+    let quotemax= document.getElementById("noteMax").value;
+    let quotemin= document.getElementById("noteMin").value;
+    if (quote>=quotemin && quote<=quotemax) {bNote=true;}
 
     if (bAffiche && bPrix && bNote){
       newArticles(unProduits.image,unProduits.title,unProduits.price,unProduits.note);  
+      compteur++;
     }
        //console.log(myProducts[unProduits].title);
   }
   
+  if (compteur==0){
+    let elemH2 = document.createElement('h2');
+    elemH2.textContent="Aucun produit ne correspond à la recherche";
+    lstArticles.appendChild(elemH2);
+  
+  }
+
 }
 
 affArticles();
