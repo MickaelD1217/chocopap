@@ -22,7 +22,7 @@
       </button>
       <nav class="collapse navbar-collapse" id="navbar-content">
          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="accueil.html">Accueil</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
             <li class="nav-item"><a class="nav-link active" href="#">Boutique</a></li>
             <li class="nav-item"><a class="nav-link" href="#panier.html" id="shopping">Panier</a></li>
             <!-- <li class="nav-item">
@@ -162,6 +162,43 @@
             </div>
          </div>
       </section>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myCaddy">Click me!</button>
+      <div class="modal" id="myCaddy">
+         <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+               <div class="modal-header">
+                  <h4>PANIER</h4>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <hr>
+               </div>
+               <div class="modal-body">
+                  <div class="row">
+                     <div class="col-2">
+                        <i class="fa-regular fa-xmark" style="color: #ff0000;"></i>
+                     </div>
+                     <div class="col-2">
+                        <img class="img-fluid" src="images/produit1.jpg" alt="">
+                     </div>
+                     <div class="col-4">
+                        Nom produit
+                        <br>
+                        XX €
+                     </div>
+                     <div class="col-2">
+                        XXX
+                     </div>
+                     <div class="col-2">              
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" aria-label="Reinitialise">REINITIALISER LE PANIER</button>
+                  <button type="button" class="btn btn-primary" aria-label="Valider">VALIDER LE PANIER</button>
+               </div>
+            </div>
+
+         </div>
+      </div>
    </main>
    <footer class="container-fluid">
       <hr>

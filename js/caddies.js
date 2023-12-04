@@ -1,4 +1,4 @@
-var caddies = new Array(0,0,0,0,0,0,0,0,0,0);
+var caddies = new Array(1,0,0,0,0,0,0,0,0,0);
 let menuPanier = document.getElementById('shopping');
 
 if (!localStorage.getItem("caddies")) {
@@ -49,6 +49,8 @@ function compteArticle(){
          // </i>
          let elemImg = document.createElement('i');
          elemImg.className = 'position-relative fa-solid fa-cart-shopping fa-2xl';
+         elemImg.dataset.bsToggle='modal';
+         elemImg.dataset.bsTarget='#myCaddy';
          let elemH6 = document.createElement('h6');
          elemH6.className = 'position-absolute top-0 start-0 translate-middle p-1 mb-1 bg-dark text-light rounded-circle';
          elemH6.id = 'nbreArticles';
