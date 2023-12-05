@@ -1,4 +1,4 @@
-var caddies = new Array(1,0,0,0,0,0,0,0,0,0);
+var caddies = new Array(0,0,0,0,0,0,0,0,0,0);
 let menuPanier = document.getElementById('shopping');
 
 if (!localStorage.getItem("caddies")) {
@@ -9,6 +9,43 @@ if (!localStorage.getItem("caddies")) {
       caddies[i] = Number(texte[i]);
    }
 }
+
+let btnAddCaddy = document.querySelectorAll('#myArticle button');
+
+//initialise un évenement, execute la procedure clickSurCaseACocher, 
+//chaque fois que l'on sélectionne une case à cocher
+for(let i=0; i < btnAddCaddy.length; i++){
+  let myBtn = btnAddCaddy[i];
+  myBtn.addEventListener('click', clickSurAjouterPanier, false);
+}
+
+function clickSurAjouterPanier(myEvent){
+   // let myBouton = document.getElementById(myEvent.target.id);
+   let myBouton = document.getElementById(myEvent.target);
+   console.log(myBouton);
+
+   
+   // if (myEvent.target.id=="checkBoxTous" && myCase.checked){
+   //   for(let i=1; i < caseAcocher.length; i++){
+   //     let myCase = caseAcocher[i];
+   //     myCase.checked = false;
+   //   }
+   // }else if (myCase.checked){
+   //   myCaseTous.checked=false;
+   // }
+   // delArticles();
+   // affArticles();
+ 
+   // if (myCase.checked){
+   //    console.log(myEvent.target.id+" true");
+   //  }else{
+   //    console.log(myEvent.target.id+" false");
+   //  }
+   
+ }
+ 
+
+
 
 function videPanier(){
    if (localStorage.getItem("caddies")){
@@ -24,6 +61,7 @@ function sauvePanier(){
    localStorage.setItem('caddies',caddies); 
 }
 
+//Modifie le menu avec le nombre d'article en cours
 function compteArticle(){
    let nbArticle = 0;
    for (var i=0;i<caddies.length;i++){

@@ -186,17 +186,16 @@ let lstProducts = `[{
 // console.log(myProducts);
 let myCaseTous = document.getElementById('checkBoxTous');
 let caseAcocher = document.querySelectorAll('#checkbox input');
-// for (myCase of caseAcocher){
-//   myCase.onclick = function(){
-//     alert('clic');
-//   }
-// }
 
+//initialise un évenement, execute la procedure clickSurCaseACocher, 
+//chaque fois que l'on sélectionne une case à cocher
 for(let i=0; i < caseAcocher.length; i++){
   let myCase = caseAcocher[i];
   myCase.addEventListener('click', clickSurCaseAcocher, false);
 }
 
+//initialise un évenement, execute la procedure changeSurSelecteur
+//chaque fois qu'on change la valeur d'un sélecteur
 let selecteur = document.querySelectorAll('#checkbox select');
 for(let i=0; i < selecteur.length; i++){
   let myCase = selecteur[i];
@@ -258,13 +257,7 @@ function clickSurCaseAcocher(myEvent){
   
 }
 
-//console.log(lstArticles);
-//console.log(`Ma page contient ${lstArticles.children.length} article(s)`);
-
-//CREATION D'UN NOUVEAU ELEMENT DANS LE DOM
-//VOIR chap 7, Découvrir le DOM, Créer de nouveaux éléments dans le DOM
-
-
+//Constitution d'un article dans le DOM
 function newArticles(fileImage,libelle,prix,etoile=2){
   let elemImg = document.createElement('img');
   // elemImg.src = `images/produit${id}.jpg`;
@@ -322,12 +315,14 @@ function newArticles(fileImage,libelle,prix,etoile=2){
   
 }
 
+//Supprime tous les articles du DOM
 function delArticles(){
   while(lstArticles.firstChild) {
     lstArticles.removeChild(lstArticles.firstChild);
   }
 }
 
+//Affiche les articles en fonction des choix cases à cocher et filtre
 function affArticles(){
   var compteur=0;
   for (unProduits of myProducts){
@@ -376,15 +371,12 @@ function affArticles(){
 
 }
 
+
+//CODE PRINCIPAL
 affArticles();
 
-// alert("pause");
-// delArticles();
 
-//newArticles();
-//newArticles();
-
-console.log(`Ma page contient ${lstArticles.children.length} article(s)`);
+//console.log(`Ma page contient ${lstArticles.children.length} article(s)`);
 
 
 

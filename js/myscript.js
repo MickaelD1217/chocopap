@@ -13,6 +13,9 @@
 // localStorage.setItem("caddies",caddies);
 
 
+
+
+
 var caddies = new Array(0,0,0,0,0,0,0,0,0,0);
 if (!localStorage.getItem("caddies")) {
 } else {
@@ -22,6 +25,9 @@ if (!localStorage.getItem("caddies")) {
       caddies[i] = Number(texte[i]);
    }
 }
+
+
+
 
 console.log(caddies);
 
