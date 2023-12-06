@@ -1,4 +1,6 @@
 
+let btnAddCaddy;
+
 let lstArticles = document.getElementById('myArticle');
 let lstProducts = `[{
        "id": "1" ,
@@ -258,7 +260,7 @@ function clickSurCaseAcocher(myEvent){
 }
 
 //Constitution d'un article dans le DOM
-function newArticles(fileImage,libelle,prix,etoile=2){
+function newArticles(id,fileImage,libelle,prix,etoile=2){
   let elemImg = document.createElement('img');
   // elemImg.src = `images/produit${id}.jpg`;
   elemImg.src = fileImage;
@@ -273,6 +275,7 @@ function newArticles(fileImage,libelle,prix,etoile=2){
   elemBtn.textContent='ajouter au panier';
   elemBtn.className='btn btn-primary';
   elemBtn.type='button';
+  elemBtn.id=id;
   
   let elemProduit = document.createElement('article');
   elemProduit.className = 'col-12 col-sm-6 col-md-4 pb-1';
@@ -356,9 +359,10 @@ function affArticles(){
     if (quote>=quotemin && quote<=quotemax) {bNote=true;}
 
     if (bAffiche && bPrix && bNote){
-      newArticles(unProduits.image,unProduits.title,unProduits.price,unProduits.note);  
+      newArticles(unProduits.id,unProduits.image,unProduits.title,unProduits.price,unProduits.note);  
       compteur++;
     }
+    
        //console.log(myProducts[unProduits].title);
   }
   
@@ -366,7 +370,16 @@ function affArticles(){
     let elemH2 = document.createElement('h2');
     elemH2.textContent="Aucun produit ne correspond à la recherche";
     lstArticles.appendChild(elemH2);
-  
+  }else{
+    //initialise un évenement, execute la procedure clickSurCaseACocher, 
+    //chaque fois que l'on sélectionne une case à cocher
+    btnAddCaddy = document.querySelectorAll('#myArticle button');
+
+    for(let i=0; i < btnAddCaddy.length; i++){
+      let myBtn = btnAddCaddy[i];
+      console.log(myBtn);
+      myBtn.addEventListener('click', clickSurAjouterPanier, false);
+    }
   }
 
 }
@@ -375,6 +388,82 @@ function affArticles(){
 //CODE PRINCIPAL
 affArticles();
 
+var caddies = new Array(0,0,0,0,0,0,0,0,0,0);
+let menuPanier = document.getElementById('shopping');
+
+if (!localStorage.getItem("caddies")) {
+} else {
+   let texte = new Array();
+   texte = localStorage.getItem("caddies").split(",");
+    for (var i=0;i<texte.length;i++){
+      caddies[i] = Number(texte[i]);
+   }
+}
+
+
+function clickSurAjouterPanier(myEvent){
+   // let myBouton = document.getElementById(myEvent.target.id);
+   let myBouton = document.getElementById(myEvent.target.id);
+   console.log(myBouton);
+ }
+ 
+function videPanier(){
+   if (localStorage.getItem("caddies")){
+      localStorage.removeItem("caddies");
+   }
+   for (var i=0;i<caddies.length;i++){
+      caddies[i]=0;
+   }
+}
+
+function sauvePanier(){
+   //Attention sauvegarde le tableau comme une chaine 
+   localStorage.setItem('caddies',caddies); 
+}
+
+//Modifie le menu avec le nombre d'article en cours
+function compteArticle(){
+   let nbArticle = 0;
+   for (var i=0;i<caddies.length;i++){
+      nbArticle += caddies[i];
+   }
+   if (nbArticle==0){
+      if (!menuPanier.firstChild.textContent == "Panier"){
+         while(menuPanier.firstChild) {
+            menuPanier.removeChild(menuPanier.firstChild);
+         }
+         menuPanier.textContent("Panier");
+      }
+      if (localStorage.getItem("caddies")){
+         localStorage.removeItem("caddies");
+      }
+   }else{
+      if (menuPanier.firstChild.textContent == "Panier"){
+         while(menuPanier.firstChild) {
+            menuPanier.removeChild(menuPanier.firstChild);
+         }
+         // <i class="position-relative fa-solid fa-cart-shopping fa-2xl">
+         // <h6 class="position-absolute top-0 start-0 translate-middle p-1 mb-1 bg-dark text-light rounded-circle" id="nbreArticles">15</h6>
+         // </i>
+         let elemImg = document.createElement('i');
+         elemImg.className = 'position-relative fa-solid fa-cart-shopping fa-2xl';
+         elemImg.dataset.bsToggle='modal';
+         elemImg.dataset.bsTarget='#myCaddy';
+         let elemH6 = document.createElement('h6');
+         elemH6.className = 'position-absolute top-0 start-0 translate-middle p-1 mb-1 bg-dark text-light rounded-circle';
+         elemH6.id = 'nbreArticles';
+         elemImg.appendChild(elemH6);
+         menuPanier.appendChild(elemImg);
+      }
+      let monPanier = document.getElementById('nbreArticles');
+      monPanier.textContent=nbArticle;
+      sauvePanier();
+   }
+}
+
+compteArticle()
+
+console.log(caddies);
 
 //console.log(`Ma page contient ${lstArticles.children.length} article(s)`);
 
