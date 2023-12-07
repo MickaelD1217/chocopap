@@ -188,6 +188,12 @@ let lstProducts = `[{
 // console.log(myProducts);
 let myCaseTous = document.getElementById('checkBoxTous');
 let caseAcocher = document.querySelectorAll('#checkbox input');
+let viewCaddy = document.getElementById('myCaddy');
+viewCaddy.addEventListener('shown.bs.modal', affPanier, false);
+
+
+let btnVidePanier =document.getElementById('btnVidePanier');
+btnVidePanier.addEventListener('click', videPanier, false);
 
 //initialise un évenement, execute la procedure clickSurCaseACocher, 
 //chaque fois que l'on sélectionne une case à cocher
@@ -202,6 +208,56 @@ let selecteur = document.querySelectorAll('#checkbox select');
 for(let i=0; i < selecteur.length; i++){
   let myCase = selecteur[i];
   myCase.addEventListener('change', changeSurSelecteur, false);
+}
+
+//Est executer lorsqu'on clique sur le panier pour afficher la fenetre MODALE
+function affPanier(myEvent){
+  let mesCommandes = document.getElementById('maCommande');
+  while(mesCommandes.firstChild) {
+    mesCommandes.removeChild(mesCommandes.firstChild);
+  }
+  let totCommande = 0;
+  for (var i=0;i<caddies.length;i++){
+    
+    if ( caddies[i]>0 ){
+      let unProduits = myProducts[i];
+      totCommande += Number(unProduits.price) * caddies[i];
+
+        let elemArticle = document.createElement('article');
+        elemArticle.className = "row"
+        let elemDivImg = document.createElement('div');
+        elemDivImg.className = "col-3 d-flex justify-content-around align-self-center";
+        let elemImgSup = document.createElement('i');
+        elemImgSup.className = "fa-solid fa-xmark"
+        elemImgSup.style.color = "#ff0000"
+        let elemImgProduits = document.createElement('img');
+        elemImgProduits.style.maxWidth = "50px";
+        elemImgProduits.src = unProduits.image;
+        elemDivImg.appendChild(elemImgSup);
+        elemDivImg.appendChild(elemImgProduits);
+        elemArticle.appendChild(elemDivImg);
+        let elemDivRef = document.createElement('div');
+        elemDivRef.className = "col-4";
+        let elmH5Title = document.createElement('h6');
+        elmH5Title.textContent = unProduits.title;
+        let elmH5Prix = document.createElement('h6');
+        elmH5Prix.textContent  = unProduits.price+" €";
+        elemDivRef.appendChild(elmH5Title);
+        elemDivRef.appendChild(elmH5Prix);
+        elemArticle.appendChild(elemDivRef);
+        let elemDivQte = document.createElement('div');
+        elemDivQte.className = "col-2";
+        let Qte = document.createElement('input')
+        Qte.type = "number";
+        Qte.className = "form-control form-control-sm";
+        Qte.placeholder = caddies[i];
+        Qte.value = caddies[i];
+        elemDivQte.appendChild(Qte);
+        elemArticle.appendChild(elemDivQte);
+        mesCommandes.appendChild(elemArticle);
+      }
+   }
+   document.getElementById("totalCommande").textContent = "Total : "+totCommande+" €";
 }
 
 function changeSurSelecteur(myEvent){
@@ -377,7 +433,6 @@ function affArticles(){
 
     for(let i=0; i < btnAddCaddy.length; i++){
       let myBtn = btnAddCaddy[i];
-      console.log(myBtn);
       myBtn.addEventListener('click', clickSurAjouterPanier, false);
     }
   }
@@ -404,16 +459,16 @@ if (!localStorage.getItem("caddies")) {
 function clickSurAjouterPanier(myEvent){
    // let myBouton = document.getElementById(myEvent.target.id);
    let myBouton = document.getElementById(myEvent.target.id);
-   console.log(myBouton);
+  //  console.log(myBouton.id);
+   caddies[Number(myBouton.id)-1]++;
+   compteArticle();
  }
  
 function videPanier(){
-   if (localStorage.getItem("caddies")){
-      localStorage.removeItem("caddies");
-   }
    for (var i=0;i<caddies.length;i++){
       caddies[i]=0;
    }
+   compteArticle(); //sauvegarde aussi le panier
 }
 
 function sauvePanier(){
@@ -461,9 +516,7 @@ function compteArticle(){
    }
 }
 
-compteArticle()
-
-console.log(caddies);
+compteArticle();
 
 //console.log(`Ma page contient ${lstArticles.children.length} article(s)`);
 
