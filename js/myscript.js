@@ -21,11 +21,10 @@ if (!localStorage.getItem("caddies")) {
 } else {
    let texte = new Array();
    texte = localStorage.getItem("caddies").split(",");
-    for (var i=0;i<texte.length;i++){
+    for (let i=0;i<texte.length;i++){
       caddies[i] = Number(texte[i]);
    }
 }
-
 
 
 

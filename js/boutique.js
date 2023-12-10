@@ -189,7 +189,7 @@ let myProducts = JSON.parse(lstProducts);
 let myCaseTous = document.getElementById('checkBoxTous');
 let caseAcocher = document.querySelectorAll('#checkbox input');
 let viewCaddy = document.getElementById('myCaddy');
-viewCaddy.addEventListener('shown.bs.modal', affPanier, false);
+viewCaddy.addEventListener('shown.bs.modal', affCommande, false);
 viewCaddy.addEventListener('hidden.bs.modal', compteArticle, false);
 
 let btnVidePanier = document.getElementById('btnVidePanier');
@@ -210,8 +210,27 @@ for (let i = 0; i < selecteur.length; i++) {
   myCase.addEventListener('change', changeSurSelecteur, false);
 }
 
+
+function renvoieRef(myReference){
+  let i = myReference.indexOf('_')
+  i++
+  return Number(myReference.slice(i))
+}
+
+function updatePrice(){
+  let totCommande = 0;
+  for (var i = 0; i < caddies.length; i++) {
+    if (caddies[i] > 0) {
+      let unProduits = myProducts[i]
+      totCommande += Number(unProduits.price) * caddies[i];
+    }
+  }
+  document.getElementById("totalCommande").textContent = "Total : " + totCommande.toFixed(2) + " €";
+  compteArticle();
+}
+
 //Est executer lorsqu'on clique sur le panier pour afficher la fenetre MODALE
-function affPanier(myEvent) {
+function affCommande(myEvent) {
   let mesCommandes = document.getElementById('maCommande');
   while (mesCommandes.firstChild) {
     mesCommandes.removeChild(mesCommandes.firstChild);
@@ -224,12 +243,15 @@ function affPanier(myEvent) {
       totCommande += Number(unProduits.price) * caddies[i];
 
       let elemArticle = document.createElement('article');
+      elemArticle.id = "ProduitRef_"+i
       elemArticle.className = "row"
       let elemDivImg = document.createElement('div');
       elemDivImg.className = "col-3 d-flex justify-content-around align-self-center";
-      let elemImgSup = document.createElement('i');
-      elemImgSup.className = "fa-solid fa-xmark"
+      let elemImgSup = document.createElement('button');
+      elemImgSup.className = "fa-solid fa-xmark btn-dark"
       elemImgSup.style.color = "#ff0000"
+      elemImgSup.id = "ProduitBtn_"+i
+      elemImgSup.addEventListener('click', clickToDeleteLine, false);
       let elemImgProduits = document.createElement('img');
       elemImgProduits.style.maxWidth = "50px";
       elemImgProduits.src = unProduits.image;
@@ -246,12 +268,14 @@ function affPanier(myEvent) {
       elemDivRef.appendChild(elmH5Prix);
       elemArticle.appendChild(elemDivRef);
       let elemDivQte = document.createElement('div');
-      elemDivQte.className = "col-2";
+      elemDivQte.className = "col-2 justify-content-around align-self-center";
       let Qte = document.createElement('input')
       Qte.type = "number";
       Qte.className = "form-control form-control-sm";
       Qte.placeholder = caddies[i];
       Qte.value = caddies[i];
+      Qte.id = "ProduitQte_"+i
+      Qte.addEventListener('click', clickToChangeLine, false);
       elemDivQte.appendChild(Qte);
       elemArticle.appendChild(elemDivQte);
       mesCommandes.appendChild(elemArticle);
@@ -312,6 +336,31 @@ function clickSurCaseAcocher(myEvent) {
   //  }else{
   //    console.log(myEvent.target.id+" false");
   //  }
+
+}
+
+function clickToChangeLine(myEvent){
+  if (myEvent.target.value<0){
+    myEvent.target.value=0
+  }
+  numProduit = renvoieRef(myEvent.target.id)
+  caddies[numProduit] = myEvent.target.value
+  updatePrice() //mise a jour total caddy
+  //console.log('Reference produits '+numProduit+" Value "+myEvent.target.value);
+}
+
+function clickToDeleteLine(myEvent){
+  let mesCommandes = document.getElementById('maCommande');
+  let numProduit = renvoieRef(myEvent.target.id)
+  let myArticle = document.getElementById('ProduitRef_'+numProduit);
+  mesCommandes.removeChild(myArticle)
+  caddies[numProduit] =0
+  updatePrice()
+
+  
+ 
+
+
 
 }
 
@@ -468,6 +517,11 @@ function videPanier() {
   for (var i = 0; i < caddies.length; i++) {
     caddies[i] = 0;
   }
+  let mesCommandes = document.getElementById('maCommande');
+  while (mesCommandes.firstChild) {
+    mesCommandes.removeChild(mesCommandes.firstChild);
+  }
+  document.getElementById("totalCommande").textContent = "Total : 0.00 €";
   compteArticle(); //sauvegarde aussi le panier
 }
 
@@ -481,7 +535,7 @@ function compteArticle() {
   let menuPanier = document.getElementById('shopping');
   let nbArticle = 0;
   for (var i = 0; i < caddies.length; i++) {
-    nbArticle += caddies[i];
+    nbArticle += Number(caddies[i]);
   }
 
   if (nbArticle == 0) {
