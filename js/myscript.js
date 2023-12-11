@@ -27,6 +27,13 @@ if (!localStorage.getItem("caddies")) {
 }
 
 
+var url = 'data/products.json'
+var successCallBack = function (response){
+   console.log(response)
+}
+
+$.get(url, successCallBack)
+
 
 
 console.log(caddies);
