@@ -183,9 +183,13 @@ let lstProducts = `[{
          "ingredients": "Caramel au beurre salé avec un coeur en poudre chocolatée. Allergènes : SOJA, LAIT (LACTOSE). Contient de l'anhydride sulfureux"
      }
  ]`;
-let myProducts = JSON.parse(lstProducts);
 
-// console.log(myProducts);
+
+
+let myProducts = JSON.parse(lstProducts)
+
+
+
 let myCaseTous = document.getElementById('checkBoxTous');
 let caseAcocher = document.querySelectorAll('#checkbox input');
 let viewCaddy = document.getElementById('myCaddy');
@@ -243,14 +247,14 @@ function affCommande(myEvent) {
       totCommande += Number(unProduits.price) * caddies[i];
 
       let elemArticle = document.createElement('article');
-      elemArticle.id = "ProduitRef_"+i
+elemArticle.id = "ProduitRef_"+i
       elemArticle.className = "row"
       let elemDivImg = document.createElement('div');
       elemDivImg.className = "col-3 d-flex justify-content-around align-self-center";
       let elemImgSup = document.createElement('button');
       elemImgSup.className = "fa-solid fa-xmark btn-dark"
       elemImgSup.style.color = "#ff0000"
-      elemImgSup.id = "ProduitBtn_"+i
+elemImgSup.id = "ProduitBtn_"+i
       elemImgSup.addEventListener('click', clickToDeleteLine, false);
       let elemImgProduits = document.createElement('img');
       elemImgProduits.style.maxWidth = "50px";
@@ -274,7 +278,7 @@ function affCommande(myEvent) {
       Qte.className = "form-control form-control-sm";
       Qte.placeholder = caddies[i];
       Qte.value = caddies[i];
-      Qte.id = "ProduitQte_"+i
+Qte.id = "ProduitQte_"+i
       Qte.addEventListener('click', clickToChangeLine, false);
       elemDivQte.appendChild(Qte);
       elemArticle.appendChild(elemDivQte);
@@ -517,7 +521,7 @@ function videPanier() {
   for (var i = 0; i < caddies.length; i++) {
     caddies[i] = 0;
   }
-  let mesCommandes = document.getElementById('maCommande');
+let mesCommandes = document.getElementById('maCommande');
   while (mesCommandes.firstChild) {
     mesCommandes.removeChild(mesCommandes.firstChild);
   }

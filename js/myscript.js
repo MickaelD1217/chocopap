@@ -14,6 +14,11 @@
 
 
 
+$.ajax({
+   method: 'GET',
+   url: 'data/products.json',
+   dataType: 'json'
+})
 
 
 var caddies = new Array(0,0,0,0,0,0,0,0,0,0);
@@ -26,16 +31,22 @@ if (!localStorage.getItem("caddies")) {
    }
 }
 
-
 var url = 'data/products.json'
 var successCallBack = function (response){
-   console.log(response)
+   //console.log(response)
 }
 
-$.get(url, successCallBack)
+var result = $.get(url, successCallBack)
+
+console.log(result)
 
 
-console.log(caddies);
+
+
+
+
+
+
 
 
 
