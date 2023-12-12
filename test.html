@@ -3,18 +3,24 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="css/bootstrap.css"> 
-   <script src="js/bootstrap.bundle.js" defer></script>
-   <script src="https://kit.fontawesome.com/e1cf8461f5.js" crossorigin="anonymous"></script>
+   <!-- <link rel="stylesheet" href="css/bootstrap.css">  -->
+   <!-- <script src="js/bootstrap.bundle.js" defer></script> -->
+   <!-- <script src="https://kit.fontawesome.com/e1cf8461f5.js" crossorigin="anonymous"></script>
    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-  crossorigin="anonymous"></script>
-   <script> scr="js/myscript.js"</script>
+  crossorigin="anonymous"></script> -->
    <title>Document</title>
-   <script src="js/myscript.js" defer></script>
+   <!-- <script src="js/myscript.js" defer></script> -->
+   <style>
+    div { margin-bottom: 10px; }
+    label { 
+      display: inline-block; 
+      width: 120px; 
+    }
+    </style>
 </head>
 <body>
-   <p>
+   <!-- <p>
       <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
       <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
       
@@ -41,7 +47,18 @@
       <i class="fa-regular fa-star" style="color: #ffc800;"></i>
       <i class="fa-regular fa-star" style="color: #ffc800;"></i>
       <i class="fa-regular fa-star" style="color: #ffc800;"></i>
-    </div>
+    </div> -->
+
+    <form>
+      <fieldset style="background:#e1eff2;">
+        <legend style="padding:20px 0; font-size:20px;">Informations personnelles:</legend>
+        <div><label>Nom:</label><input type="text"></div>
+        <div><label> Email:</label><input type="text"></div>
+        <div><label>Date de naissance:</label><input type="text"></div>
+        <div><label>Lieu de naissance:</label><input type="text"></div>
+      </fieldset>
+    </form>
+
     
 </body>
 
