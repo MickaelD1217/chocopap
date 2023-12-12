@@ -17,7 +17,8 @@
 $.ajax({
    method: 'GET',
    url: 'data/products.json',
-   dataType: 'json'
+   dataType: 'json',
+   async: false
 })
 
 
@@ -32,15 +33,16 @@ if (!localStorage.getItem("caddies")) {
 }
 
 var url = 'data/products.json'
+var myProducts
+
 var successCallBack = function (response){
-   //console.log(response)
+   console.log(response)
+   myProducts = response
 }
 
-var result = $.get(url, successCallBack)
-
-console.log(result)
-
-
+$.get(url, successCallBack)
+alert("test")
+console.log(myProducts)
 
 
 
