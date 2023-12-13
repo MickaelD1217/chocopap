@@ -17,6 +17,7 @@ let lstArticles = document.getElementById('myArticle');
 let myCaseTous = document.getElementById('checkBoxTous');
 let caseAcocher = document.querySelectorAll('#checkbox input');
 let viewCaddy = document.getElementById('myCaddy');
+let viewProduit  = document.getElementById('ficheProduit');
 let btnVidePanier = document.getElementById('btnVidePanier');
 viewCaddy.addEventListener('shown.bs.modal', affCommande, false);
 viewCaddy.addEventListener('hidden.bs.modal', compteArticle, false);
@@ -70,18 +71,23 @@ function affCommande(myEvent) {
       totCommande += Number(unProduits.price) * caddies[i];
 
       let elemArticle = document.createElement('article');
-elemArticle.id = "ProduitRef_"+i
+      elemArticle.id = "ProduitRef_"+i
       elemArticle.className = "row"
       let elemDivImg = document.createElement('div');
       elemDivImg.className = "col-3 d-flex justify-content-around align-self-center";
       let elemImgSup = document.createElement('button');
-      elemImgSup.className = "fa-solid fa-xmark btn-dark"
+      elemImgSup.className = "btn fa-solid fa-xmark btn-dark"
+      // elemImgSup.dataset.bsToggle="popover"
+      // elemImgSup.setAttribute('data-bs-trigger','hover focus')
+      // elemImgSup.setAttribute('data-bs-content','Supprime article')
       elemImgSup.style.color = "#ff0000"
-elemImgSup.id = "ProduitBtn_"+i
+      elemImgSup.id = "ProduitBtn_"+i
       elemImgSup.addEventListener('click', clickToDeleteLine, false);
       let elemImgProduits = document.createElement('img');
       elemImgProduits.style.maxWidth = "50px";
       elemImgProduits.src = unProduits.image;
+      elemImgProduits.dataset.bsToggle='modal'
+      elemImgProduits.dataset.bsTarget='#ficheProduit'
       elemDivImg.appendChild(elemImgSup);
       elemDivImg.appendChild(elemImgProduits);
       elemArticle.appendChild(elemDivImg);
@@ -191,6 +197,21 @@ function clickToDeleteLine(myEvent){
 
 }
 
+
+//Supprime tous les articles du DOM
+function delArticles() {
+  while (lstArticles.firstChild) {
+    lstArticles.removeChild(lstArticles.firstChild);
+  }
+}
+
+console.log(lstArticles)
+
+
+if (lstArticles){
+
+  
+
 //Constitution d'un article dans le DOM
 function newArticles(id, fileImage, libelle, prix, etoile = 2) {
   let elemImg = document.createElement('img');
@@ -198,6 +219,7 @@ function newArticles(id, fileImage, libelle, prix, etoile = 2) {
   elemImg.src = fileImage;
   elemImg.alt = libelle;
   elemImg.className = 'w-100 p-2';
+  elemImg.addEventListener('click', showImgProduit, false);
   let elemH5 = document.createElement('h5');
   elemH5.textContent = libelle;
   let elemPrix = document.createElement('p');
@@ -250,14 +272,7 @@ function newArticles(id, fileImage, libelle, prix, etoile = 2) {
 
 }
 
-//Supprime tous les articles du DOM
-function delArticles() {
-  while (lstArticles.firstChild) {
-    lstArticles.removeChild(lstArticles.firstChild);
-  }
-}
-
-//Affiche les articles en fonction des choix cases à cocher et filtre
+  //Affiche les articles en fonction des choix cases à cocher et filtre
 function affArticles() {
   var compteur = 0;
   for (unProduits of myProducts) {
@@ -315,10 +330,29 @@ function affArticles() {
 
 }
 
+function showImgProduit(e){
+  let image = e.target;
+  let imageContainer = document.getElementById('galleryContainer');
+  let bigImage = imageContainer.querySelector('img');
+  bigImage.src = image.src;
+  imageContainer.classList.toggle('visible');
+  imageContainer.addEventListener('click', closeImgProduit, false);
+}
+
+function closeImgProduit(){
+  let imageContainer = document.getElementById('galleryContainer');
+  imageContainer.classList.toggle('visible');
+}
+
+
+}
+
 var successCallBack = function (response){
    console.log(response)
    myProducts = response
-   affArticles();
+   if (lstArticles){
+    affArticles();
+   }
 }
 
 //CODE PRINCIPAL,

@@ -4,6 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="css/bootstrap.css"> 
+   <link rel="stylesheet" href="css/boutique.css"> 
    <script src="js/bootstrap.bundle.js" defer></script>
    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -27,7 +28,7 @@
          <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
             <li class="nav-item"><a class="nav-link active" href="#">Boutique</a></li>
-            <li class="nav-item"><a class="nav-link" href="#panier.html" id="shopping">Panier</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" id="shopping">Panier</a></li>
             <!-- <li class="nav-item">
                <a class="nav-link" href="#panier.html" id="shopping">
                   <i class="position-relative fa-solid fa-cart-shopping fa-2xl">
@@ -43,6 +44,7 @@
       <h1  class="text-center">BOUTIQUE</h1>
       <section class="row gy-3">
          <div class="col-12 col-sm-4 col-md-3">
+            <fieldset style="border-color: white;">
             <fieldset class="position-relative border border-secondary ps-1 pb-1 bg-secondary border border-white" id="checkbox">
             <!-- <fieldset class="position-relative bg-secondary" id="checkbox"> -->
                <legend>Filtre</legend>
@@ -132,7 +134,7 @@
             </div>
          </div>
       </section>
-      <div class="modal" id="myCaddy">
+      <div class="modal fade" id="myCaddy">
          <div class="modal-dialog">
             <div class="modal-content bg-dark text-light">
                <div class="modal-header">
@@ -141,19 +143,6 @@
                   <hr>
                </div>
                <div class="modal-body" style="min-height: 500px;" id="maCommande">
-                  <article class="row">
-                     <div class="col-3 d-flex justify-content-around align-self-center">
-                        <i class="fa-solid fa-xmark" style="color: #ff0000;"></i>
-                        <img style="max-width: 50px;" src="images/produit1.jpg" alt="">
-                     </div>
-                     <div class="col-4">
-                        <h5>Nom produit</h5>
-                        <h5>XX €</h5>
-                     </div>
-                     <div class="col-2">
-                        <input type="number" class="form-control form-control-sm" placeholder="5">
-                     </div>
-                  </article>
                   <article class="row">
                      <div class="col-3 d-flex justify-content-around align-self-center">
                         <i class="fa-solid fa-xmark" style="color: #ff0000;"></i>
@@ -178,6 +167,35 @@
             </div>
          </div>
       </div>
+
+      <div class="modal fade" id="ficheProduit" aria-hidden="true" aria-labelledby="ficheProduit" tabindex="-1">
+         <div class="modal-dialog">
+            <div class="modal-content bg-dark txt-light">
+               <div class="modal-header">
+                  <h4>ARTICLE</h4>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <hr>
+               </div>
+               <div class="modal-body" id="myBonbon">
+                  <div class="col-6 d-flex justify-content-around align-self-center">
+                     <img src="images/produit1.jpg" alt="">
+                  </div>
+                  <div class="col-6">
+                     <h5>Nom produit</h5>
+                     <h5>XX €</h5>
+                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, voluptatem ducimus! Autem aperiam quaerat blanditiis, aliquid fugit earum tempora voluptate? Ducimus debitis cum autem incidunt tempore eius alias praesentium sequi.</p>
+                     <div class="d-inline">
+                        <input type="number" class="form-control form-control-sm" placeholder="">
+                        <button class="btn btn-secondary">AJOUTER AU PANIER</button>   
+                     </div>
+                  </div>
+               </div>
+               <h4>Ingrédients</h4>
+               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro atque iusto vero assumenda expedita. Dicta iure adipisci earum dolores quis expedita mollitia illo dolorem voluptates aperiam, et distinctio ab temporibus?</p>
+            </div>
+         </div>
+      </div>
+      <figure id="galleryContainer"><img src=""></figure>
    </main>
    <footer class="container-fluid">
       <hr>

@@ -5,8 +5,11 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="css/bootstrap.css"> 
    <script src="js/bootstrap.bundle.js" defer></script>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+   crossorigin="anonymous"></script>
+   <script src="js/boutique.js" defer></script>
    <script src="https://kit.fontawesome.com/e1cf8461f5.js" crossorigin="anonymous"></script>
-   <script src="js/index.js" defer ></script>
    <title>Document</title>
 </head>
 <body class="bg-dark text-light">
@@ -21,7 +24,7 @@
          <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link active" href="#">Accueil</a></li>
             <li class="nav-item"><a class="nav-link" href="boutique.html">Boutique</a></li>
-            <li class="nav-item"><a class="nav-link" href="boutique.html#myCaddy" id="shopping">Panier</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" id="shopping">Panier</a></li>
          </ul>
       </nav>
    </header>
@@ -69,6 +72,26 @@
       <!-- <img src="images/accueil1.jpg" alt="image d'acceuil n°1">
       <img src="images/accueil2.jpg" alt="image d'acceuil n°1">
       <img src="images/accueil3.jpg" alt="image d'acceuil n°3"> -->
+      <div class="modal" id="myCaddy">
+         <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+               <div class="modal-header">
+                  <h4>PANIER</h4>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <hr>
+               </div>
+               <div class="modal-body" style="min-height: 500px;" id="maCommande">
+               </div>
+               <hr>
+               <div class="d-grid gap-2 p-2">
+                  <h4 class="text-center" id="totalCommande">Total : 50 €</h4>
+                  <button type="button" class="btn btn-primary btn-block" aria-label="Reinitialise" id="btnVidePanier">REINITIALISER LE PANIER</button>
+                  <button type="button" class="btn btn-primary btn-block" aria-label="Valider">VALIDER LE PANIER</button>
+               </div>
+            </div>
+         </div>
+      </div>
+
    </main>
    <footer class="container">
       <br>
