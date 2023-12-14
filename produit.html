@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/bootstrap.css"> 
+   <link rel="stylesheet" href="css/boutique.css"> 
+   <script src="js/bootstrap.bundle.js" defer></script>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+   crossorigin="anonymous"></script>
+   <script src="js/boutique.js" defer></script>
+   <script src="https://kit.fontawesome.com/e1cf8461f5.js" crossorigin="anonymous"></script>
+   <title>Document</title>
+</head>
+<body class="bg-dark text-light">
+<!-- <body class="bg-light text-dark"> -->
+<!-- <body> -->
+   <!-- <header class="navbar navbar-expand-md navbar-light px-3"> -->
+   <header class="navbar navbar-expand-md navbar-dark px-3">
+      <div class="navbar-brand">
+         <img src="images/logo.png" style="width: 50px; height: 50px" alt="logo">
+      </div>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <nav class="collapse navbar-collapse" id="navbar-content">
+         <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+            <li class="nav-item"><a class="nav-link active" href="boutique.html">Boutique</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" id="shopping">Panier</a></li>
+            <!-- <li class="nav-item">
+               <a class="nav-link" href="#panier.html" id="shopping">
+                  <i class="position-relative fa-solid fa-cart-shopping fa-2xl">
+                     <h6 class="position-absolute top-0 start-0 translate-middle p-1 mb-1 bg-dark text-light rounded-circle" id="nbreArticles">15</h6>
+                  </i>
+               </a>
+            </li> -->
+         </ul>
+      </nav>
+   </header>
+   <main class="container-fluid">
+      <hr>
+      <section class="row">
+         <div class="col-12 col-sm-6 d-flex justify-content-around align-self-center">
+            <img class="w-100 p-2" src="" id="imgPrd" alt="">
+         </div>
+         <div class="col-12 col-sm-6">
+            <h1 id="namePrd" >Nom produit</h1>
+            <h5 id="pricePrd">XX €</h5>
+            <p id="notePrd">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, voluptatem ducimus! Autem aperiam quaerat blanditiis, aliquid fugit earum tempora voluptate? Ducimus debitis cum autem incidunt tempore eius alias praesentium sequi.</p>
+            <div class="container row align-items-center gx-2 p-2">
+               <input class="col-2 p-1" type="number" class="form-control" placeholder="1" id="qtePrd">
+               <div class="col-1"></div>
+               <button class="col-6 btn btn-secondary p-1">AJOUTER AU PANIER</button>   
+            </div>
+         </div>
+         <div class="col-12">
+            <h4 class="p-3">Ingrédients</h4>
+            <p class="p-4" id="ingredientPrd">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro atque iusto vero assumenda expedita. Dicta iure adipisci earum dolores quis expedita mollitia illo dolorem voluptates aperiam, et distinctio ab temporibus?</p>
+         </div>
+      </section>
+      <div class="modal fade" id="myCaddy">
+         <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+               <div class="modal-header">
+                  <h4>PANIER</h4>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <hr>
+               </div>
+               <div class="modal-body" style="min-height: 500px;" id="maCommande">
+                  <article class="row">
+                     <div class="col-3 d-flex justify-content-around align-self-center">
+                        <i class="fa-solid fa-xmark" style="color: #ff0000;"></i>
+                        <img style="max-width: 50px;" src="images/produit1.jpg" alt="">
+                     </div>
+                     <div class="col-4">
+                        Nom produit
+                        <br>
+                        XX €
+                     </div>
+                     <div class="col-2">
+                        <input type="number" class="form-control form-control-sm" placeholder="">
+                     </div>
+                  </article>
+               </div>
+               <hr>
+               <div class="d-grid gap-2 p-2">
+                  <h4 class="text-center" id="totalCommande">Total : 50 €</h4>
+                  <button type="button" class="btn btn-primary btn-block" aria-label="Reinitialise" id="btnVidePanier">REINITIALISER LE PANIER</button>
+                  <button type="button" class="btn btn-primary btn-block" aria-label="Valider">VALIDER LE PANIER</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <figure id="galleryContainer"><img src=""></figure>
+      
+   </main>
+   <footer class="container-fluid">
+      <hr>
+      <section class="row">
+         <div class="col-12 col-sm-4">
+            <h2>Choco Pap</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est aliquam nisi ipsam, laboriosam illo impedit quas. Non ipsam pariatur consequatur quaerat eligendi illo voluptatem voluptatibus, ut ipsum nemo debitis iure.
+            </div>
+            <div class="col-12 col-sm-4">
+               <h2>Contact</h2>
+               <p>Adresse: 51 rue du chocolat<br>75000 Paris<br>   
+               Téléphone: 01 23 45 67 89<br>   
+               Honoraires: 9h00-17h00 du lundi au vendredi</p>
+            </div>
+            <div class="col-12 col-sm-4 d-flex justify-content-between align-items-center">
+                  <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                  <i class="fa-brands fa-instagram fa-2xl"></i>
+                  <i class="fa-brands fa-square-twitter fa-2xl"></i>
+                  <!-- <i class="fa-solid fa-cart-shopping fa-2xl"></i> -->
+            </div>
+      </section>
+   </footer>
+  </body>
+</html>

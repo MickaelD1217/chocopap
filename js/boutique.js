@@ -11,7 +11,7 @@ if (!localStorage.getItem("caddies")) {
 }
 
 
-var url = 'data/products.json'
+var url_produits = 'data/products.json'
 var myProducts
 let lstArticles = document.getElementById('myArticle');
 let myCaseTous = document.getElementById('checkBoxTous');
@@ -19,9 +19,18 @@ let caseAcocher = document.querySelectorAll('#checkbox input');
 let viewCaddy = document.getElementById('myCaddy');
 let viewProduit  = document.getElementById('ficheProduit');
 let btnVidePanier = document.getElementById('btnVidePanier');
+
 viewCaddy.addEventListener('shown.bs.modal', affCommande, false);
 viewCaddy.addEventListener('hidden.bs.modal', compteArticle, false);
 btnVidePanier.addEventListener('click', videPanier, false);
+
+// console.log(document.URL)
+const url = new URL(document.URL)
+const searchParams = new URLSearchParams(url.search);
+// for (const p of searchParams){
+//   console.log(p)
+// }
+
 
 //initialise un évenement, execute la procedure clickSurCaseACocher, 
 //chaque fois que l'on sélectionne une case à cocher
@@ -107,7 +116,7 @@ function affCommande(myEvent) {
       Qte.className = "form-control form-control-sm";
       Qte.placeholder = caddies[i];
       Qte.value = caddies[i];
-Qte.id = "ProduitQte_"+i
+      Qte.id = "ProduitQte_"+i
       Qte.addEventListener('click', clickToChangeLine, false);
       elemDivQte.appendChild(Qte);
       elemArticle.appendChild(elemDivQte);
@@ -205,12 +214,30 @@ function delArticles() {
   }
 }
 
-console.log(lstArticles)
+function AffProduit(e) {
 
+  let unProduits = myProducts[e]
+  // newArticles(unProduits.id, unProduits.title, unProduits.price, unProduits.note);
+  console.log(unProduits.image)
+  let imgProduit = document.getElementById('imgPrd')
+  imgProduit.src = unProduits.image
+  let nameProduit = document.getElementById('namePrd')
+  nameProduit.textContent = unProduits.title
+  let priceProduit = document.getElementById('pricePrd')
+  priceProduit.textContent = unProduits.price+" €"
+  let noteProduit = document.getElementById('notePrd')
+  noteProduit.textContent = unProduits.description
+  let ingredientProduit = document.getElementById('ingredientPrd')
+  ingredientProduit.textContent = unProduits.ingredients
+  let quantiteProduit = document.getElementById('qtePrd')
+  quantiteProduit.placeholder = caddies[e];
+  quantiteProduit.value = caddies[e];
+  console.log(e +" "+ caddies[e])
+  //quantiteProduit.addEventListener('click', clickToChangeLine, false);
+
+}
 
 if (lstArticles){
-
-  
 
 //Constitution d'un article dans le DOM
 function newArticles(id, fileImage, libelle, prix, etoile = 2) {
@@ -330,6 +357,7 @@ function affArticles() {
 
 }
 
+
 function showImgProduit(e){
   let image = e.target;
   let imageContainer = document.getElementById('galleryContainer');
@@ -348,16 +376,20 @@ function closeImgProduit(){
 }
 
 var successCallBack = function (response){
-   console.log(response)
+  //  console.log(response)
    myProducts = response
    if (lstArticles){
     affArticles();
+   }
+   if (searchParams.has('produit')){
+      let num = Number(searchParams.get('produit'))
+      AffProduit(num);
    }
 }
 
 //CODE PRINCIPAL,
 //RECUPERE LA LISTE DES PRODUITS, PUIS LES AFFICHES
-$.get(url, successCallBack)
+$.get(url_produits, successCallBack)
 
 function clickSurAjouterPanier(myEvent) {
   // let myBouton = document.getElementById(myEvent.target.id);
@@ -417,7 +449,7 @@ function compteArticle() {
       elemImg.dataset.bsTarget = '#myCaddy';
       let elemH6 = document.createElement('h6');
       elemH6.className = 'position-absolute top-0 start-0 translate-middle p-1 mb-1 bg-dark text-light rounded-circle';
-      console.log(elemH6);
+      // console.log(elemH6);
       elemH6.id = 'nbreArticles';
       elemImg.appendChild(elemH6);
       menuPanier.appendChild(elemImg);
