@@ -9,6 +9,8 @@ if (!localStorage.getItem("caddies")) {
 }
 
 
+
+
 function compteArticle() {
    let menuPanier = document.getElementById('shopping');
    let nbArticle = 0;

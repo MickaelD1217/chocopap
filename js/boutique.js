@@ -101,7 +101,7 @@ function affCommande(myEvent) {
       elemDivImg.appendChild(elemImgProduits);
       elemArticle.appendChild(elemDivImg);
       let elemDivRef = document.createElement('div');
-      elemDivRef.className = "col-4";
+      elemDivRef.className = "col-5 col_sm-4";
       let elmH5Title = document.createElement('h6');
       elmH5Title.textContent = unProduits.title;
       let elmH5Prix = document.createElement('h6');
@@ -110,7 +110,7 @@ function affCommande(myEvent) {
       elemDivRef.appendChild(elmH5Prix);
       elemArticle.appendChild(elemDivRef);
       let elemDivQte = document.createElement('div');
-      elemDivQte.className = "col-2 justify-content-around align-self-center";
+      elemDivQte.className = "col-3 col-sm-2 justify-content-around align-self-center";
       let Qte = document.createElement('input')
       Qte.type = "number";
       Qte.className = "form-control form-control-sm";
@@ -188,6 +188,14 @@ function clickToChangeLine(myEvent){
   numProduit = renvoieRef(myEvent.target.id)
   caddies[numProduit] = myEvent.target.value
   updatePrice() //mise a jour total caddy
+  //Attention sur feuille produit, je modifie la valeur
+  let newValue = document.getElementById('qtePrd')
+  if (newValue){
+    newValue.value = myEvent.target.value
+  }
+
+
+
   //console.log('Reference produits '+numProduit+" Value "+myEvent.target.value);
 }
 
@@ -221,6 +229,7 @@ function AffProduit(e) {
   console.log(unProduits.image)
   let imgProduit = document.getElementById('imgPrd')
   imgProduit.src = unProduits.image
+  imgProduit.addEventListener('click', showImgProduit, false);
   let nameProduit = document.getElementById('namePrd')
   nameProduit.textContent = unProduits.title
   let priceProduit = document.getElementById('pricePrd')
@@ -233,8 +242,18 @@ function AffProduit(e) {
   quantiteProduit.placeholder = caddies[e];
   quantiteProduit.value = caddies[e];
   console.log(e +" "+ caddies[e])
-  //quantiteProduit.addEventListener('click', clickToChangeLine, false);
+  let btnUpdate = document.getElementById('btnUpdPrd')
+  btnUpdate.addEventListener('click', clickSurUpdatePanier, false);
+}
 
+function clickShowProduit(e) {
+  let image = e.target.id;
+  // console.log(image)
+  // console.log(image.indexOf('t'))
+  // console.log(image.slice(7,image.lenght))
+  if (image.indexOf('produit') != -1 ){
+    window.location.href='produit.html?produit='+image.slice(7,image.lenght)
+  }
 }
 
 if (lstArticles){
@@ -246,7 +265,11 @@ function newArticles(id, fileImage, libelle, prix, etoile = 2) {
   elemImg.src = fileImage;
   elemImg.alt = libelle;
   elemImg.className = 'w-100 p-2';
-  elemImg.addEventListener('click', showImgProduit, false);
+  let myNumero = id-1
+  elemImg.id = "produit"+myNumero
+  elemImg.addEventListener('click', clickShowProduit, false);
+  //onclick="window.location.href='boutique.html';"
+
   let elemH5 = document.createElement('h5');
   elemH5.textContent = libelle;
   let elemPrix = document.createElement('p');
@@ -357,6 +380,7 @@ function affArticles() {
 
 }
 
+}
 
 function showImgProduit(e){
   let image = e.target;
@@ -370,9 +394,6 @@ function showImgProduit(e){
 function closeImgProduit(){
   let imageContainer = document.getElementById('galleryContainer');
   imageContainer.classList.toggle('visible');
-}
-
-
 }
 
 var successCallBack = function (response){
@@ -397,6 +418,17 @@ function clickSurAjouterPanier(myEvent) {
   //  console.log(myBouton.id);
   caddies[Number(myBouton.id) - 1]++;
   compteArticle();
+}
+
+function clickSurUpdatePanier(myEvent) {
+  //  console.log(myBouton.id);
+  if (searchParams.has('produit')){
+    let num = Number(searchParams.get('produit'))
+    let quantiteProduit = document.getElementById('qtePrd')
+    //console.log(quantiteProduit.value)
+    caddies[num]=quantiteProduit.value
+    compteArticle();
+ }
 }
 
 function videPanier() {
