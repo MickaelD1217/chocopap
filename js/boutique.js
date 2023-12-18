@@ -10,6 +10,19 @@ if (!localStorage.getItem("caddies")) {
   }
 }
 
+if (!localStorage.getItem("modeClair")) {
+} else {
+  let mybody = document.querySelector('body')
+  //console.log(mybody)
+  mybody.className='bg-light text-black'
+  let myNavbar = document.querySelector('header')
+  myNavbar.className = 'navbar navbar-expand-md navbar-light bg-light px-3'
+  let myModal = document.getElementById('modalContent')
+  myModal.className = 'modal-content bg-light text-black'
+  // let btnmyModal = document.getElementsByClassName('btn-close')
+  // btnmyModal.className='btn-close btn-close-white'
+}
+
 
 var url_produits = 'data/products.json'
 var myProducts
