@@ -242,6 +242,7 @@ function AffProduit(e) {
   console.log(unProduits.image)
   let imgProduit = document.getElementById('imgPrd')
   imgProduit.src = unProduits.image
+  imgProduit.className = "pe-auto"
   imgProduit.addEventListener('click', showImgProduit, false);
   let nameProduit = document.getElementById('namePrd')
   nameProduit.textContent = unProduits.title
@@ -277,7 +278,7 @@ function newArticles(id, fileImage, libelle, prix, etoile = 2) {
   // elemImg.src = `images/produit${id}.jpg`;
   elemImg.src = fileImage;
   elemImg.alt = libelle;
-  elemImg.className = 'w-100 p-2';
+  elemImg.className = 'w-100 p-2 btn';
   let myNumero = id-1
   elemImg.id = "produit"+myNumero
   elemImg.addEventListener('click', clickShowProduit, false);
