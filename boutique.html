@@ -5,6 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="css/bootstrap.css"> 
    <link rel="stylesheet" href="css/boutique.css"> 
+   <link rel="icon" type="image/png" href="images/logo.png"> 
    <script src="js/bootstrap.bundle.js" defer></script>
    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -49,41 +50,43 @@
             <!-- <fieldset class="position-relative bg-secondary" id="checkbox"> -->
                <legend>Filtre</legend>
                <!-- <p class="small position-absolute top-0 start-10 translate-middle bg-secondary">FILTRE</p> -->
-               <p class="pt-3 h5"><u>Catégories</u></p>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkBoxTous" checked>
-                  <label class="form-check-label" for="checkBoxTous">Tous</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkBoxChocoBlanc">
-                  <label class="form-check-label" for="checkBoxChocoBlanc">Chocolat blanc</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkBoxChocoLait">
-                  <label class="form-check-label" for="checkBoxChocoLait">Chocolat au lait</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkBoxChocoNoir">
-                  <label class="form-check-label" for="checkBoxChocoNoir">Chocolat noir</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkBoxNoisette">
-                  <label class="form-check-label" for="checkBoxNoisette">Noix/Noisette</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkBoxFruit">
-                  <label class="form-check-label" for="checkBoxFruit">Fruit</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkBoxCaramel">
-                  <label class="form-check-label" for="checkBoxCaramel">Caramel</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkBoxLiqueur">
-                  <label class="form-check-label" for="checkBoxLiqueur">Liqueur</label>
-                </div>
-                <p class="pt-2 h5"><u>Prix</u></p>
-                <div>
+               <h5 class="pt-2"><u>Catégories<span class="btn d-sm-none text-light" id="btnCategorie"> +</span></u></h5>
+               <div class="d-none d-sm-block" id="divCategorie">
+                  <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="checkBoxTous" checked>
+                     <label class="form-check-label" for="checkBoxTous">Tous</label>
+                     </div>
+                     <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="checkBoxChocoBlanc">
+                     <label class="form-check-label" for="checkBoxChocoBlanc">Chocolat blanc</label>
+                     </div>
+                     <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="checkBoxChocoLait">
+                     <label class="form-check-label" for="checkBoxChocoLait">Chocolat au lait</label>
+                     </div>
+                     <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="checkBoxChocoNoir">
+                     <label class="form-check-label" for="checkBoxChocoNoir">Chocolat noir</label>
+                     </div>
+                     <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="checkBoxNoisette">
+                     <label class="form-check-label" for="checkBoxNoisette">Noix/Noisette</label>
+                     </div>
+                     <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="checkBoxFruit">
+                     <label class="form-check-label" for="checkBoxFruit">Fruit</label>
+                     </div>
+                     <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="checkBoxCaramel">
+                     <label class="form-check-label" for="checkBoxCaramel">Caramel</label>
+                     </div>
+                     <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="checkBoxLiqueur">
+                     <label class="form-check-label" for="checkBoxLiqueur">Liqueur</label>
+                     </div>
+               </div>
+                <h5 class="pt-2"><u>Prix<span class="btn d-sm-none text-light" id="btnPrix"> +</span></u></h5>
+                <div class="d-none d-sm-block" id="divPrix">
                   <label class="position-relative pb-1 w-50" for="prixMin">Prix min</label> 
                   <select aria-label="Prix min" id="prixMin">
                      <option value="1" selected>1 €</option>
@@ -93,8 +96,6 @@
                      <option value="20">20 €</option>
                      <option value="100">100 €</option>
                   </select>
-                </div>
-                <div>
                   <label class="position-relative w-50" for="prixMax">Prix max</label> 
                   <select aria-label="Prix max" id="prixMax">
                      <option value="1">1 €</option>
@@ -105,8 +106,8 @@
                      <option selected value="100">100 €</option>
                   </select>
                 </div>
-                <p class="pt-2 h5"><u>Notes</u></p>
-                <div>
+                <h5 class="pt-2"><u>Notes<span class="btn d-sm-none text-light" id="btnNotes"> +</span></u></h5>
+                <div  class="d-none d-sm-block" id="divNotes">
                   <label class="position-relative pb-1 w-50" for="noteMin">Note min</label> 
                   <select aria-label="note min" id="noteMin">
                      <option value="1" selected>1</option>
@@ -115,8 +116,6 @@
                      <option value="4">4</option>
                      <option value="5">5</option>
                   </select>
-                </div>
-                <div>
                   <label class="position-relative pb-1 w-50" for="noteMax">Note max</label> 
                   <select aria-label="note max" id="noteMax">
                      <option value="1">1</option>

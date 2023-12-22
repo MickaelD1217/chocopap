@@ -28,7 +28,6 @@ var url_produits = 'data/products.json'
 var myProducts
 let lstArticles = document.getElementById('myArticle');
 let myCaseTous = document.getElementById('checkBoxTous');
-let caseAcocher = document.querySelectorAll('#checkbox input');
 let viewCaddy = document.getElementById('myCaddy');
 let viewProduit  = document.getElementById('ficheProduit');
 let btnVidePanier = document.getElementById('btnVidePanier');
@@ -47,9 +46,18 @@ const searchParams = new URLSearchParams(url.search);
 
 //initialise un évenement, execute la procedure clickSurCaseACocher, 
 //chaque fois que l'on sélectionne une case à cocher
+let caseAcocher = document.querySelectorAll('#checkbox input');
 for (let i = 0; i < caseAcocher.length; i++) {
   let myCase = caseAcocher[i];
   myCase.addEventListener('click', clickSurCaseAcocher, false);
+}
+
+//initialise un évenement, pour chaque + lié au filtre
+let btnPlus = document.querySelectorAll('#checkbox span');
+for (let i = 0; i < btnPlus.length; i++) {
+  let mybtn = btnPlus[i];
+  console.log(mybtn)
+  mybtn.addEventListener('click', clickSurFiltrePlus, false);
 }
 
 //initialise un évenement, execute la procedure changeSurSelecteur
@@ -227,6 +235,24 @@ function clickToDeleteLine(myEvent){
 
 }
 
+function clickSurFiltrePlus(myEvent){
+  console.log(myEvent.target.id)
+  let block
+  if (myEvent.target.id=='btnCategorie'){
+    block = document.getElementById('divCategorie')
+  }else if(myEvent.target.id=='btnPrix'){
+    block = document.getElementById('divPrix')
+  }else if(myEvent.target.id=='btnNotes'){
+    block = document.getElementById('divNotes')
+  }
+  console.log(myEvent.target.textContent)
+  if (myEvent.target.textContent==' +'){
+    myEvent.target.textContent=' -'
+  }else if (myEvent.target.textContent==' -'){
+    myEvent.target.textContent=' +'
+  }
+
+}
 
 //Supprime tous les articles du DOM
 function delArticles() {
