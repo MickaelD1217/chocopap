@@ -227,12 +227,6 @@ function clickToDeleteLine(myEvent){
   mesCommandes.removeChild(myArticle)
   caddies[numProduit] =0
   updatePrice()
-
-  
- 
-
-
-
 }
 
 function clickSurFiltrePlus(myEvent){
@@ -248,8 +242,10 @@ function clickSurFiltrePlus(myEvent){
   console.log(myEvent.target.textContent)
   if (myEvent.target.textContent==' +'){
     myEvent.target.textContent=' -'
+    block.className="d-block"
   }else if (myEvent.target.textContent==' -'){
     myEvent.target.textContent=' +'
+    block.className="d-none d-sm-block"
   }
 
 }
