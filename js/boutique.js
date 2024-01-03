@@ -264,7 +264,7 @@ function AffProduit(e) {
   console.log(unProduits.image)
   let imgProduit = document.getElementById('imgPrd')
   imgProduit.src = unProduits.image
-  imgProduit.className = "pe-auto"
+  imgProduit.className = "w-100 p-2" //pe-auto
   imgProduit.addEventListener('click', showImgProduit, false);
   let nameProduit = document.getElementById('namePrd')
   nameProduit.textContent = unProduits.title
